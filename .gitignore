@@ -4,6 +4,9 @@
 # Vim temp files
 *.swp
 
+# Hidden files
+.*.c
+
 # Object files
 *.o
 *.ko
