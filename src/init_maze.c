@@ -39,14 +39,7 @@ bool init(void)
 		else
 		{
 			screen_surface = SDL_GetWindowSurface(window);
-			while (quit == false)
-			{
-				while (SDL_PollEvent(&e))
-				{
-					if (e.type == SDL_QUIT)
-						quit = true;
-				}
-			}
+
 		}
 	}
 
