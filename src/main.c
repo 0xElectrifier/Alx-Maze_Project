@@ -11,7 +11,13 @@
 
 int main(int argc, char **argv)
 {
+	bool init_return;
+	(void) argc;
+	(void) argv;
 
+	init_return = init();
+	if (init_return == false)
+		return (-1);
 
 	return (0); /* Return on success */
 }
