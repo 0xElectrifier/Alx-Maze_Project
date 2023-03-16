@@ -1,0 +1,10 @@
+# Usage:
+# make -f Maze_Makefile			# compiles
+
+CC = gcc
+COMPILER_FLAGS = -Wall -Werror -Wextra -pendantic
+LINKER_FLAG = -lSDL2
+NAME = maze
+
+all: %.c
+	$(CC) $< $(COMPILER_FLAGS) -o $(NAME) $(LINKER_FLAG)
