@@ -3,8 +3,10 @@
 
 CC = gcc
 COMPILER_FLAGS = -Wall -Werror -Wextra -pendantic
+HEADER_FILE = -I ./include
 LINKER_FLAG = -lSDL2
 NAME = maze
+SOURCE = ./src/%.c
 
-all: %.c
-	$(CC) $< $(COMPILER_FLAGS) -o $(NAME) $(LINKER_FLAG)
+all: $(SOURCE)
+	$(CC) $< $(COMPILER_FLAGS) -o $(NAME) $(LINKER_FLAG) 
