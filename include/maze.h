@@ -8,6 +8,7 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <math.h>
 
 /* The Window the program will be rendering to */
 extern SDL_Window *window;
