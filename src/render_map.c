@@ -25,7 +25,9 @@ int side; /* was a NS or a EW wall hit? */
 
 
 /**
- * start_game_loop - start formatting of map
+ * iterate_screenWidth - iterates through the
+/**
+ * start_game_loop - handles game loop
  *
  *
  * Description: this function begins the game loop, iterating through
