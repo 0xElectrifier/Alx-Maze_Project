@@ -3,7 +3,7 @@
 
 
 /**
- * PLAYER_DATA - struct for position/direction data
+ * struct PLAYER_DATA - struct for position/direction data
  * @posX: x start position
  * @posY: y start position
  * @dirX: x initial direction vector
@@ -25,19 +25,21 @@ typedef struct PLAYER_DATA
 
 
 /**
- * RAY_DATA - Single ray data
+ * struct RAY_DATA - Single ray data
  *
  * @rayDirX: the ray direction on the X component
  * @rayDirY: the ray direction on the Y component
- * @mapX: 
- * @mapY:
  * @deltaDistX: length of ray from one x-side to next x-side
  * @deltaDistY: length of ray from one y-side to next y-side
  * @sideDistX: length of ray from current position to next x-side
  * @sideDistY: length of ray from current position to next y-side
  * @perpWallDist: the perpendicular distance between the player's position
  *		  and the wall that is hit by the ray.
- * @stepX: What direction to step in x-direction (either +1 or -1) 
+ * @cameraX: the x-coordinate on the camera plane that the current
+ *	     x-coordinate of the screen represents.
+ * @mapX: the x-coordinate of the current square of the map the ray is in
+ * @mapY: the y-coordinate of the current square of the map the ray is in
+ * @stepX: What direction to step in x-direction (either +1 or -1)
  * @stepY: What direction to step in y-direction (either +1 or -1)
  * @hit: tracks if a wall was hit
  * @side: tracks if a NS or a EW wall hit
@@ -64,11 +66,10 @@ typedef struct RAY_DATA
 
 
 /**
- * TIMING_DATA - timing data.
+ * struct TIMING_DATA - timing data.
  *
  * @time: time of current frame
  * @oldTime: time of previous frame
- * @cameraX: x-coordinate in camera space
  *
  * Description: struct that contains timing data for raycasting.
  */
@@ -80,7 +81,7 @@ typedef struct TIMING_DATA
 
 
 /**
- * RAYCAST_DATA - contains all the data required for raycasting
+ * struct RAYCAST_DATA - contains all the data required for raycasting
  *
  * @e: tracks events that has occurred in the system, usually user input
  * @player_data: data type 'PLAYER_DATA'
@@ -92,7 +93,7 @@ typedef struct TIMING_DATA
  */
 typedef struct RAYCAST_DATA
 {
-	SDL_Event e;
+	char **world_map;
 	PLAYER_DATA *player_data;
 	RAY_DATA *ray_data;
 	TIMING_DATA *timing_data;
