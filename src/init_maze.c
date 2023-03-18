@@ -16,8 +16,6 @@ bool init(void)
 	(void) screen_surface;
 	bool success = true;
 	bool quit = false;
-	int SCREEN_WIDTH = 720;
-	int SCREEN_HEIGHT = 560;
 
 	/* Initializing SDL */
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -29,7 +27,9 @@ bool init(void)
 	else
 	{
 		/* Create Window */
-		window = SDL_CreateWindow("Electrifier Maze", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		window = SDL_CreateWindow("Electrifier Maze", SDL_WINDOWPOS_UNDEFINED,
+					  SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
+					  SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		/* On failure... */
 		if (window == NULL)
 		{
