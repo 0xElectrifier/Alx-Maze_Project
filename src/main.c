@@ -12,12 +12,17 @@
 int main(int argc, char **argv)
 {
 	bool init_return;
+	int g_loop_ret;
 	(void) argc;
 	(void) argv;
 
 	init_return = init();
 	if (init_return == false)
 		return (-1);
+
+	g_loop_ret = game_loop();
+	if (g_loop_ret == 1)
+		return (1);
 
 	return (0); /* Return on success */
 }
