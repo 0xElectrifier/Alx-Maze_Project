@@ -13,7 +13,7 @@
  *
  * Description: Contains the position and direction data for raycasting
  */
-typedef struct
+typedef struct PLAYER_DATA
 {
 	double posX;
 	double posY;
@@ -31,11 +31,12 @@ typedef struct
  * @rayDirY: the ray direction on the Y component
  * @mapX: 
  * @mapY:
- * @sideDistX: length of ray from current position to next x-side
- * @sideDistY: length of ray from current position to next y-side
  * @deltaDistX: length of ray from one x-side to next x-side
  * @deltaDistY: length of ray from one y-side to next y-side
- * @perpWallDist:
+ * @sideDistX: length of ray from current position to next x-side
+ * @sideDistY: length of ray from current position to next y-side
+ * @perpWallDist: the perpendicular distance between the player's position
+ *		  and the wall that is hit by the ray.
  * @stepX: What direction to step in x-direction (either +1 or -1) 
  * @stepY: What direction to step in y-direction (either +1 or -1)
  * @hit: tracks if a wall was hit
@@ -43,22 +44,23 @@ typedef struct
  *
  * Description: Struct that contains the raycasting data for a single ray.
  */
-typedef struct
+typedef struct RAY_DATA
 {
 	double rayDirX;
 	double rayDirY;
-	int mapX;
-	int mapY;
-	double sideDistX;
-	double sideDistY;
 	double deltaDistX;
 	double deltaDistY;
+	double sideDistX;
+	double sideDistY;
 	double perpWallDist;
+	double cameraX;
+	int mapX;
+	int mapY;
 	int stepX;
 	int stepY;
 	int hit;
 	int side;
-} RAY_DATA
+} RAY_DATA;
 
 
 /**
@@ -70,11 +72,10 @@ typedef struct
  *
  * Description: struct that contains timing data for raycasting.
  */
-typedef struct
+typedef struct TIMING_DATA
 {
 	double time;
 	double oldTime;
-	double cameraX;
 } TIMING_DATA;
 
 
@@ -89,12 +90,12 @@ typedef struct
  * Description: A combination of the 3 key data structs which were broken down
  *		to simpler bits to be used by the Raycasting Algorithm (DDA).
  */
-typedef struct
+typedef struct RAYCAST_DATA
 {
 	SDL_Event e;
-	PLAYER_DATA player_data;
-	RAY_DATA ray_data;
-	TIMING_DATA timing_data;
+	PLAYER_DATA *player_data;
+	RAY_DATA *ray_data;
+	TIMING_DATA *timing_data;
 } RAYCAST_DATA;
 
 
