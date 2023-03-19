@@ -93,7 +93,7 @@ typedef struct TIMING_DATA
  */
 typedef struct RAYCAST_DATA
 {
-	char **world_map;
+	int **world_map;
 	PLAYER_DATA *player_data;
 	RAY_DATA *ray_data;
 	TIMING_DATA *timing_data;
