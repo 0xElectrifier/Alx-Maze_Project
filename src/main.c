@@ -6,7 +6,7 @@
  * @argv: pointer to an array of pointers/strings passed on terminal
  *
  * Description: A 3D Maze game built with Raycasting
- * Return: 0 if successful otherwise 1
+ * Return: 0 if successful otherwise -1
  */
 
 int main(int argc, char **argv)
@@ -21,8 +21,8 @@ int main(int argc, char **argv)
 		return (-1);
 
 	g_loop_ret = game_loop();
-	if (g_loop_ret == 1)
-		return (1);
+	if (g_loop_ret == -1)
+		return (-1);
 
 	return (0); /* Return on success */
 }
