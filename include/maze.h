@@ -55,8 +55,12 @@ int start_game_loop(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 int iterate_screen_width(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 			 RAY_DATA *r_data, TIMING_DATA *t_data);
 
+int **load_map(void);
+
 int init_Ray_data(PLAYER_DATA *p_data, RAY_DATA *r_data, int x);
 
 int init_PT_data(PLAYER_DATA *p_data, TIMING_DATA *t_data);
+
+void free_rc_data(RAYCAST_DATA *rc_data);
 
 #endif /* MAZE_H */
