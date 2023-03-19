@@ -75,3 +75,49 @@ int init_Ray_data(PLAYER_DATA *p_data, RAY_DATA *r_data, int x)
 
 	return (0);
 }
+
+/**
+ * load_map - creates the game map
+ *
+ * Description: loads the game map from a file and
+ *		constructs it into a 2D array
+ * Return: pointer to a 2D array of the game map on success, otherwise NULL
+ */
+int **load_map(void)
+{
+	char code;
+	int code_int, i, j, **map;
+	FILE *fd;
+
+	map = malloc(sizeof(int *) * MAP_HEIGHT);
+
+	for (i = 0; i < MAP_HEIGHT; i++)
+	{
+		map[i] = malloc(sizeof(int) * MAP_WIDTH);
+		if (map[i] == NULL)
+			return (NULL);
+	}
+
+	fd = fopen("./maps/map.txt", "r");
+	if (fd == NULL)
+		return (NULL);
+
+	for (i = 0; i < MAP_HEIGHT; i++)
+	{
+		for (j = 0; j < MAP_WIDTH; j++)
+		{
+			code = fgetc(fd);
+			if (code == '\n')
+				continue;
+			code_int = atoi(&code);
+			/* If atoi failed */
+			if (code_int == 0 && code != '0')
+				return (NULL);
+
+			map[i][j] = code;
+		}
+	}
+	fclose(fd);
+
+	return (map);
+}
