@@ -1,7 +1,6 @@
 #include "maze.h"
 
 
-
 /**
  * iterate_screen_width - iterates through the vertical components
  *			  of the screen
@@ -55,6 +54,7 @@ int iterate_screen_width(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 	return (0);
 }
 
+
 /**
  * start_game_loop - handles game loop
  * @rc_data: RAYCAST_DATA struct
@@ -91,51 +91,8 @@ int start_game_loop(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 	return (0);
 }
 
-/**
- * load_map - creates the game map
- *
- * Description: loads the game map from a file and
- *		constructs it into a 2D array
- * Return: pointer to a 2D array of the game map on success, otherwise NULL
- */
-int **load_map(void)
-{
-	char code;
-	int code_int, i, j, **map;
-	FILE *fd;
 
-	map = malloc(sizeof(int *) * MAP_WIDTH);
 
-	for (i = 0; i < MAP_WIDTH; i++)
-	{
-		map[i] = malloc(sizeof(int) * MAP_HEIGHT);
-		if (map[i] == NULL)
-			return (NULL);
-	}
-
-	fd = fopen("./maps/map.txt", "r");
-	if (fd == NULL)
-		return (NULL);
-
-	for (i = 0; i < MAP_WIDTH; i++)
-	{
-		for (j = 0; j < MAP_HEIGHT; j++)
-		{
-			code = fgetc(fd);
-			if (code == '\n')
-				continue;
-			code_int = atoi(&code);
-			/* If atoi failed */
-			if (code_int == 0 && code != '0')
-				return (NULL);
-
-			map[i][j] = code;
-		}
-	}
-	fclose(fd);
-
-	return (map);
-}
 /**
  * game_loop - handles game loop
  *
@@ -169,12 +126,7 @@ int game_loop(void)
 	start_game_loop(rc_data, (rc_data)->player_data,
 			(rc_data)->ray_data, (rc_data)->timing_data);
 
-	/* Free dynamically allocated memories
-	free(rc_data);
-	free((rc_data)->player_data);
-	free((rc_data)->ray_data);
-	free((rc_data)->timing_data);
-	*/
+	free_rc_data(rc_data);
 
 	return (0);
 }
