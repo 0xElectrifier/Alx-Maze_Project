@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <errno.h>
 
 #include "raycast_struct.h"
 
@@ -38,7 +39,7 @@ extern SDL_Surface *screen_surface;
 
 #endif /* MAP_H */
 
-extern int world_map[map_width][map_height];
+extern int world_map[MAP_WIDTH][MAP_HEIGHT];
 
 /* Prototype of init function */
 bool init(void);
