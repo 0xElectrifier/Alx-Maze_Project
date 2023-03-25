@@ -9,9 +9,10 @@
  */
 GAME_WINDOW *create_game_window(void)
 {
-	static GAME_WINDOW *game_window = NULL;
-	static SDL_Window *window = NULL;
-	static SDL_Surface *screen_surface = NULL;
+	GAME_WINDOW *game_window = NULL;
+	SDL_Window *window = NULL;
+	SDL_Surface *screen_surface = NULL;
+	SDL_Renderer *renderer = NULL;
 
 	game_window = malloc(sizeof(GAME_WINDOW));
 	if (game_window == NULL)
@@ -32,10 +33,14 @@ GAME_WINDOW *create_game_window(void)
 		screen_surface = SDL_GetWindowSurface(window);
 		if (screen_surface == NULL)
 			return (NULL);
+		renderer = SDL_CreateRenderer(window, -1, 0);
+		if (renderer == NULL)
+			return (NULL);
 
 	}
 	game_window->window = window;
 	game_window->screen_surface = screen_surface;
+	game_window->renderer = renderer;
 
 	return (game_window);
 }

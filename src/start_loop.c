@@ -80,10 +80,10 @@ int iterate_screen_width(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 			 RAY_DATA *r_data, TIMING_DATA *t_data)
 {
 	int x;
-	GAME_WINDOW *gw;
-	SDL_Color *colors, RGB_RED, RGB_BLUE, RGB_GREEN, RGB_WHITE, RGB_YELLOW;
+	GAME_WINDOW *game_w;
+	SDL_Color *colors, color, RGB_RED, RGB_BLUE, RGB_GREEN, RGB_WHITE, RGB_YELLOW;
 
-	gw = rc_data->game_w;
+	game_w = rc_data->game_w;
 	colors = create_colors();
 
 	for (x = 0; x < SCREEN_WIDTH; x++)
@@ -105,15 +105,24 @@ int iterate_screen_width(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 		calc_line_height(r_data);
 
 		/* Choose Color */
-		choose_wall_color(rc_data, r_data);
-		/*
-		draw3DWall(gw->renderer, x, SCREEN_HEIGHT, r_data->lineHeight,
-			   r_data->drawStart, r_data->drawEnd, colors, r_data->cameraX, r_data->perpWallDist);
-		*/
+		color = choose_wall_color(rc_data, r_data);
 
-		/* Draw the pixels of the stripe as a vertical line */
-		drawVerticalLine(rc_data->G_W, x, r_data->drawStart, r_data->drawEnd, color);
+		SDL_SetRenderDrawColor(game_w->renderer, color.r, color.g, color.b, color.a);
+		SDL_RenderDrawLine(game_w->renderer, x, r_data->drawEnd, x, r_data->drawStart);
+
+
+		/*
+		draw3DWall(game_w, x, SCREEN_HEIGHT, r_data->lineHeight,
+			   r_data->drawStart, r_data->drawEnd, colors, r_data->cameraX, r_data->perpWallDist);
+
+
+		* Draw the pixels of the stripe as a vertical line *
+		drawVerticalLine(game_w, x, r_data->drawStart, r_data->drawEnd, color);*/
+
 	}
+	/* Present the renderer on the screen */
+	SDL_RenderPresent(game_w->renderer);
+
 
 	return (0);
 }

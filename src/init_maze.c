@@ -117,6 +117,13 @@ int **load_map(void)
 			map[i][j] = code;
 		}
 	}
+
+		for (int i = 0; i < MAP_WIDTH; i++)
+		{
+			printf("%d, ", map[0][i]);
+		}
+		printf("\n");
+
 	fclose(fd);
 
 	return (map);

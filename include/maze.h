@@ -17,7 +17,6 @@
 #include <errno.h>
 
 #include "raycast_struct.h"
-#include "color_sdl.h"
 
 /* The Window the program will be rendering to */
 extern SDL_Window *window;
@@ -78,9 +77,9 @@ SDL_Color divideColorByScalar(SDL_Color color, int scalar);
 
 SDL_Color choose_wall_color(RAYCAST_DATA *rc_data, RAY_DATA *r_data);
 
-void drawVerticalLine(SDL_Renderer *renderer, int x, int startY, int endY, SDL_Color color);
+void drawVerticalLine(GAME_WINDOW *game_window, int x, int startY, int endY, SDL_Color color);
 
-void draw3DWall(SDL_Renderer *renderer, int x, int screenHeight,
+void draw3DWall(GAME_WINDOW *game_w, int x, int screenHeight,
 		int wallHeight, int startY, int endY, SDL_Color *colors,
 		int textureX, double perpWallDist);
 
