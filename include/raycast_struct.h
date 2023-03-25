@@ -62,6 +62,9 @@ typedef struct RAY_DATA
 	int stepY;
 	int hit;
 	int side;
+	int lineHeight;
+	int drawStart;
+	int drawEnd;
 } RAY_DATA;
 
 
@@ -81,6 +84,22 @@ typedef struct TIMING_DATA
 
 
 /**
+ * struct GAME_WINDOW - contains key SDL objects that acts as our game surface on the screen like the game window, renderer, etc.
+ * @window: represents the graphical window on the user's screen
+ * @renderer: used to render graphics to @window object
+ * @screen_surface: represents a 2D image, used to load, manipulate and
+ *		    render images to the screen using @renderer.
+ *
+ */
+typedef struct GAME_WINDOW
+{
+	SDL_Window *window;
+	SDL_Renderer *renderer;
+	SDL_Surface *screen_surface;
+} GAME_WINDOW;
+
+
+/**
  * struct RAYCAST_DATA - contains all the data required for raycasting
  *
  * @e: tracks events that has occurred in the system, usually user input
@@ -97,6 +116,7 @@ typedef struct RAYCAST_DATA
 	PLAYER_DATA *player_data;
 	RAY_DATA *ray_data;
 	TIMING_DATA *timing_data;
+	GAME_WINDOW *G_W;
 } RAYCAST_DATA;
 
 
