@@ -17,6 +17,7 @@
 #include <errno.h>
 
 #include "raycast_struct.h"
+#include "color_sdl.h"
 
 /* The Window the program will be rendering to */
 extern SDL_Window *window;
@@ -42,18 +43,22 @@ extern SDL_Surface *screen_surface;
 extern int world_map[MAP_WIDTH][MAP_HEIGHT];
 
 /* Prototype of init function */
-bool init(void);
+GAME_WINDOW *init(void);
+
+GAME_WINDOW *create_game_window(void);
 
 /* Renders the 2D map into a 3D map*/
 int render_map(void);
 
-int game_loop(void);
+int game_loop(GAME_WINDOW *game_window);
 
 int start_game_loop(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 		    RAY_DATA *r_data, TIMING_DATA *t_data);
 
 int iterate_screen_width(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 			 RAY_DATA *r_data, TIMING_DATA *t_data);
+
+void perform_dda(int **world_map, RAY_DATA *r_data);
 
 int **load_map(void);
 
@@ -62,5 +67,21 @@ int init_Ray_data(PLAYER_DATA *p_data, RAY_DATA *r_data, int x);
 int init_PT_data(PLAYER_DATA *p_data, TIMING_DATA *t_data);
 
 void free_rc_data(RAYCAST_DATA *rc_data);
+
+SDL_Color *create_colors(void);
+
+SDL_Color createColorSDL(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
+
+SDL_Color multiplyColorByScalar(SDL_Color color, double scalar);
+
+SDL_Color divideColorByScalar(SDL_Color color, int scalar);
+
+SDL_Color choose_wall_color(RAYCAST_DATA *rc_data, RAY_DATA *r_data);
+
+void drawVerticalLine(SDL_Renderer *renderer, int x, int startY, int endY, SDL_Color color);
+
+void draw3DWall(SDL_Renderer *renderer, int x, int screenHeight,
+		int wallHeight, int startY, int endY, SDL_Color *colors,
+		int textureX, double perpWallDist);
 
 #endif /* MAZE_H */
