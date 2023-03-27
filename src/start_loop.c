@@ -34,8 +34,6 @@ void perform_dda(int **world_map, RAY_DATA *r_data)
 }
 
 
-
-
 /**
  * calc_line_height - Calculate the height of line to be drawn on screen
  * @r_data: pointer to the RAY_DATA struct
@@ -50,13 +48,14 @@ void calc_line_height(RAY_DATA *r_data)
 
 	/* Calculate height of line to draw on screen */
 	lineHeight = (int)(SCREEN_HEIGHT / (r_data)->perpWallDist);
+	/*printf("lineHeight - %d\n", lineHeight);*/
 
 	/* Calculate lowest and highest pixel to fill in current stripe */
 	drawStart = -lineHeight / 2 + (SCREEN_HEIGHT / 2);
 	if (drawStart < 0)
 		drawStart = 0;
 
-	drawEnd = lineHeight / 2 + SCREEN_HEIGHT /2;
+	drawEnd = lineHeight / 2 + SCREEN_HEIGHT / 2;
 	if (drawEnd >= SCREEN_HEIGHT)
 		drawEnd = SCREEN_HEIGHT - 1;
 
@@ -80,20 +79,15 @@ int iterate_screen_width(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 			 RAY_DATA *r_data, TIMING_DATA *t_data)
 {
 	int x;
-	GAME_WINDOW *game_w;
-	SDL_Color *colors, color, RGB_RED, RGB_BLUE, RGB_GREEN, RGB_WHITE, RGB_YELLOW;
-
-	game_w = rc_data->game_w;
-	colors = create_colors();
+	GAME_WINDOW *game_w = rc_data->game_w;
+	SDL_Color color, RGB_BLACK = {0, 0, 0, 255};
 
 	for (x = 0; x < SCREEN_WIDTH; x++)
 	{
 		/* Assign values to the PLAYER_DATA and TIMING_DATA struct */
 		init_PT_data(p_data, t_data);
-
 		/* Calculate ray position and direction */
 		init_Ray_data(p_data, r_data, x);
-
 		/* Perform DDA */
 		perform_dda((rc_data)->world_map, r_data);
 
@@ -107,22 +101,15 @@ int iterate_screen_width(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 		/* Choose Color */
 		color = choose_wall_color(rc_data, r_data);
 
-		SDL_SetRenderDrawColor(game_w->renderer, color.r, color.g, color.b, color.a);
-		SDL_RenderDrawLine(game_w->renderer, x, r_data->drawEnd, x, r_data->drawStart);
-
-
-		/*
-		draw3DWall(game_w, x, SCREEN_HEIGHT, r_data->lineHeight,
-			   r_data->drawStart, r_data->drawEnd, colors, r_data->cameraX, r_data->perpWallDist);
-
-
-		* Draw the pixels of the stripe as a vertical line *
-		drawVerticalLine(game_w, x, r_data->drawStart, r_data->drawEnd, color);*/
-
+		/* Draw the pixels as vertical lines with rgb color. Draw floor */
+		drawVertLine(game_w, x, 0, r_data->drawStart, RGB_BLACK);
+		/* Draw walls */
+		drawVertLine(game_w, x, r_data->drawStart, r_data->drawEnd, color);
+		/* Draw floor */
+		drawVertLine(game_w, x, r_data->drawEnd, SCREEN_HEIGHT, RGB_BLACK);
 	}
 	/* Present the renderer on the screen */
 	SDL_RenderPresent(game_w->renderer);
-
 
 	return (0);
 }
@@ -139,7 +126,6 @@ int iterate_screen_width(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
  *		the vertical axis of the screen so images can be rendered.
  * Return: 0 on success
  */
-
 int start_game_loop(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 		    RAY_DATA *r_data, TIMING_DATA *t_data)
 {
@@ -166,6 +152,7 @@ int start_game_loop(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 
 /**
  * game_loop - handles game loop
+ * @game_window: pointer to the GAME_WINDOW struct
  *
  * Return: 0 on success, otherwise -1
  */

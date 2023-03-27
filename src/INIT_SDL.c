@@ -36,7 +36,6 @@ GAME_WINDOW *create_game_window(void)
 		renderer = SDL_CreateRenderer(window, -1, 0);
 		if (renderer == NULL)
 			return (NULL);
-
 	}
 	game_window->window = window;
 	game_window->screen_surface = screen_surface;
@@ -56,7 +55,6 @@ GAME_WINDOW *create_game_window(void)
 
 GAME_WINDOW *init(void)
 {
-	bool success = true;
 	GAME_WINDOW *game_window = NULL;
 
 	/* Initializing SDL */
@@ -64,13 +62,10 @@ GAME_WINDOW *init(void)
 	{
 		/* On failure to initialize */
 		printf("SDL could not initialize!\nSDL_Error: %s\n", SDL_GetError());
-		success = false;
 	}
 	else
 	{
 		game_window = create_game_window();
-		if (game_window == NULL)
-			success = false;
 	}
 
 	return (game_window);
