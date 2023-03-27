@@ -116,7 +116,7 @@ typedef struct RAYCAST_DATA
 	PLAYER_DATA *player_data;
 	RAY_DATA *ray_data;
 	TIMING_DATA *timing_data;
-	GAME_WINDOW *G_W;
+	GAME_WINDOW *game_w;
 } RAYCAST_DATA;
 
 

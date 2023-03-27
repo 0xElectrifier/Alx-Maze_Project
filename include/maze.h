@@ -79,8 +79,11 @@ SDL_Color choose_wall_color(RAYCAST_DATA *rc_data, RAY_DATA *r_data);
 
 void drawVerticalLine(GAME_WINDOW *game_window, int x, int startY, int endY, SDL_Color color);
 
+bool drawVertLine(GAME_WINDOW *game_window, int x, int startY, int endY,
+		  SDL_Color color);
+
 void draw3DWall(GAME_WINDOW *game_w, int x, int screenHeight,
-		int wallHeight, int startY, int endY, SDL_Color *colors,
+		int wallHeight, int startY, int endY, SDL_Color color,
 		int textureX, double perpWallDist);
 
 #endif /* MAZE_H */
