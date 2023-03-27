@@ -1,7 +1,8 @@
 #include "maze.h"
 
 /**
- * choose_wall_color - decides what color will be printed on a wall, depending on the position of the wall on the map
+ * choose_wall_color - decides what color will be printed on a wall,
+ *		       depending on the position of the wall on the map
  * @rc_data: pointer to the RAYCAST_DATA object
  * @r_data: pointer to the RAY_DATA object
  *
@@ -48,7 +49,7 @@ SDL_Color *create_colors(void)
 {
 	int color_count;
 	SDL_Color RGB_RED, RGB_GREEN, RGB_BLUE, RGB_WHITE, RGB_YELLOW;
-	SDL_Color *colors, temp;
+	SDL_Color *colors;
 
 	color_count = 5;
 	colors = malloc(sizeof(SDL_Color) * color_count);
@@ -76,6 +77,7 @@ SDL_Color *create_colors(void)
  * @r: represents the RED component of the color (0-255)
  * @g: represents the GREEN component of the color (0-255)
  * @b: represents the BLUE component of the color (0-255)
+ * @a: represents the ALPHA component of the color (0-255)
  *
  * Description: constructs a ColorSDL color with the given
  *		red, green, blue and alpha values
@@ -84,11 +86,12 @@ SDL_Color *create_colors(void)
 SDL_Color createColorSDL(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
 	SDL_Color color = {r, g, b, a};
+
 	return (color);
 }
 
 /**
- * multiplyColorByScalar: multiplies an SDL_Color object
+ * multiplyColorByScalar - multiplies an SDL_Color object
  * @color: a SDL_Color object to be modified
  * @scalar: the value to multiply each color component by
  *
@@ -122,30 +125,50 @@ SDL_Color divideColorByScalar(SDL_Color color, int scalar)
 	return (color);
 }
 
+
 /**
- * drawVerticalLine - modifies the pixels of the SDL_Surface pointed to by the 'surface' argument.
- * @game_window: pointer to a GAME_WINDOW object contain key
- *		game structures like the window, renderer and screen surface
- * @surface: a pointer to the SDL_Surface on which to draw the line
+ * drawVertLine - modifies the pixels of the SDL_Surface pointed to
+ *		  by the 'surface' argument.
  * @x: the x-coordinate of the line
  * @startY: the y-coordinate of the start of the line
  * @endY: the y-coordinate of the end of the line
  * @color: the color of the line, represented as an SDL_Color struct
- *
- * Description: draws a vertical line of pixels in a given color
- *		from (x, yStart) to (x, yEnd) on an SDL_Surface.
- * Return: none
+ * @game_window: pointer to a GAME_WINDOW object contain key
+ *		 game structures like the window, renderer and screen surface
+ * Return: true on success, otherwise false
  */
-void drawVerticalLine(GAME_WINDOW *game_window, int x, int startY,
-		      int endY, SDL_Color color)
+bool drawVertLine(GAME_WINDOW *game_window, int x, int startY, int endY,
+		  SDL_Color color)
 {
-	int y;
-	SDL_Renderer *renderer = game_window->renderer;
+	int y, temp;
+	SDL_Surface *surface = NULL;
+	SDL_Renderer *renderer = NULL;
+	SDL_Texture *texture = NULL;
+	Uint32 colorSDL, *bufp;
+	int add;
 
-	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+	surface = game_window->screen_surface;
+	renderer = game_window->renderer;
+	/* Swap startY and endY if endY is less than startY */
+	if (endY < startY)
+	{
+		temp = startY;
+		startY = endY;
+		endY = temp;
+	}
+
+	/* Check if any point of the line is off-screen */
+	if (endY < 0 || startY >= surface->h || x < 0 || x >= surface->w)
+	{
+		return (false);
+	}
+
+	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, SDL_ALPHA_OPAQUE);
 
 	for (y = startY; y <= endY; y++)
 	{
 		SDL_RenderDrawPoint(renderer, x, y);
-	}
+	}	return (true);
+
+	return (true);
 }
