@@ -73,6 +73,9 @@ typedef struct RAY_DATA
  *
  * @time: time of current frame
  * @oldTime: time of previous frame
+ * @frameTime: time a current frame has taken, in seconds
+ * @moveSpeed: movement speed with value in squares/second
+ * @rotSpeed: rotation speed with value in squares/second
  *
  * Description: struct that contains timing data for raycasting.
  */
@@ -80,6 +83,9 @@ typedef struct TIMING_DATA
 {
 	double time;
 	double oldTime;
+	double frameTime;
+	double moveSpeed;
+	double rotSpeed;
 } TIMING_DATA;
 
 
@@ -94,8 +100,8 @@ typedef struct TIMING_DATA
 typedef struct GAME_WINDOW
 {
 	SDL_Window *window;
-	SDL_Renderer *renderer;
 	SDL_Surface *screen_surface;
+	SDL_Renderer *renderer;
 } GAME_WINDOW;
 
 

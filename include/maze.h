@@ -82,8 +82,16 @@ void drawVerticalLine(GAME_WINDOW *game_window, int x, int startY, int endY, SDL
 bool drawVertLine(GAME_WINDOW *game_window, int x, int startY, int endY,
 		  SDL_Color color);
 
-void draw3DWall(GAME_WINDOW *game_w, int x, int screenHeight,
-		int wallHeight, int startY, int endY, SDL_Color color,
-		int textureX, double perpWallDist);
+void move_backwards(RAYCAST_DATA *rc_data);
+
+void move_forward(RAYCAST_DATA *rc_data);
+
+void turn_right(RAYCAST_DATA *rc_data);
+
+void turn_left(RAYCAST_DATA *rc_data);
+
+void readKeysAndMove(RAYCAST_DATA *rc_data);
+
+void timing(TIMING_DATA *t_data);
 
 #endif /* MAZE_H */
