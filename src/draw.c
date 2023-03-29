@@ -143,9 +143,6 @@ bool drawVertLine(GAME_WINDOW *game_window, int x, int startY, int endY,
 	int y, temp;
 	SDL_Surface *surface = NULL;
 	SDL_Renderer *renderer = NULL;
-	SDL_Texture *texture = NULL;
-	Uint32 colorSDL, *bufp;
-	int add;
 
 	surface = game_window->screen_surface;
 	renderer = game_window->renderer;

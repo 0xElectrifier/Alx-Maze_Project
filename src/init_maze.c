@@ -21,6 +21,9 @@ int init_PT_data(PLAYER_DATA *p_data, TIMING_DATA *t_data)
 	/* Time structure data */
 	(t_data)->time = 0;
 	(t_data)->oldTime = 0;
+	(t_data)->frameTime = 0;
+	(t_data)->moveSpeed = 0;
+	(t_data)->rotSpeed = 0;
 
 	return (0);
 }

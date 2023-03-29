@@ -135,14 +135,18 @@ int start_game_loop(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 	/* Start Game Loop, stop when a 'quit-event' is detected */
 	while (quit == false)
 	{
+		SDL_FillRect(rc_data->game_w->screen_surface, NULL, 0xFF);
 		/* Event Loop */
 		while (SDL_PollEvent(&e))
 		{
 			if (e.type == SDL_QUIT)
 				quit = true;
+			
 		}
 
+		readKeysAndMove(rc_data);
 		iterate_screen_width(rc_data, p_data, r_data, t_data);
+		timing(t_data);
 	}
 
 	return (0);
