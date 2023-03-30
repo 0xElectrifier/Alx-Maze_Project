@@ -165,12 +165,14 @@ int start_game_loop(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 		/* Event Loop */
 		while (SDL_PollEvent(&e))
 		{
-			if (e.type == SDL_QUIT)
-				quit = true;
-
-			if (e.type == SDL_KEYDOWN)
+			switch (e.type)
 			{
-				readKeysAndMove(rc_data, e);
+				case SDL_QUIT:
+					quit = true;
+					break;
+				case SDL_KEYDOWN:
+					readKeysAndMove(rc_data, e);
+					break;
 			}
 			i++;
 		}
