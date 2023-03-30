@@ -11,16 +11,16 @@
 
 int main(int argc, char **argv)
 {
-	bool init_return;
 	int g_loop_ret;
+	GAME_WINDOW *game_window;
 	(void) argc;
 	(void) argv;
 
-	init_return = init();
-	if (init_return == false)
+	game_window = init();
+	if (game_window == false)
 		return (-1);
 
-	g_loop_ret = game_loop();
+	g_loop_ret = game_loop(game_window);
 	if (g_loop_ret == -1)
 		return (-1);
 

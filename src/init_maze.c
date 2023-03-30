@@ -21,6 +21,9 @@ int init_PT_data(PLAYER_DATA *p_data, TIMING_DATA *t_data)
 	/* Time structure data */
 	(t_data)->time = 0;
 	(t_data)->oldTime = 0;
+	(t_data)->frameTime = 0;
+	(t_data)->moveSpeed = 0;
+	(t_data)->rotSpeed = 0;
 
 	return (0);
 }
@@ -76,6 +79,7 @@ int init_Ray_data(PLAYER_DATA *p_data, RAY_DATA *r_data, int x)
 	return (0);
 }
 
+
 /**
  * load_map - creates the game map
  *
@@ -85,39 +89,37 @@ int init_Ray_data(PLAYER_DATA *p_data, RAY_DATA *r_data, int x)
  */
 int **load_map(void)
 {
-	char code;
-	int code_int, i, j, **map;
-	FILE *fd;
+	char line[MAP_HEIGHT + 1], *path;
+	int fd, i, j, readcount, **map;
 
-	map = malloc(sizeof(int *) * MAP_HEIGHT);
-
-	for (i = 0; i < MAP_HEIGHT; i++)
+	map = malloc(sizeof(int *) * MAP_WIDTH);
+	for (i = 0; i < MAP_WIDTH; i++)
 	{
-		map[i] = malloc(sizeof(int) * MAP_WIDTH);
+		map[i] = malloc(sizeof(int) * MAP_HEIGHT);
 		if (map[i] == NULL)
 			return (NULL);
 	}
-
-	fd = fopen("./maps/map.txt", "r");
-	if (fd == NULL)
-		return (NULL);
-
-	for (i = 0; i < MAP_HEIGHT; i++)
+	
+	path = "./maps/map.txt";
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
 	{
-		for (j = 0; j < MAP_WIDTH; j++)
-		{
-			code = fgetc(fd);
-			if (code == '\n')
-				continue;
-			code_int = atoi(&code);
-			/* If atoi failed */
-			if (code_int == 0 && code != '0')
-				return (NULL);
+		printf("File not found\n");
+		return (NULL);
+	}
 
-			map[i][j] = code;
+	for (i = 0; i < MAP_WIDTH; i++)
+	{
+		readcount = read(fd, line, MAP_HEIGHT + 1);
+		/* Skip if number of bytes read is not equal to MAP_HEIGHT */
+		if (readcount != (MAP_HEIGHT + 1))
+			continue;
+		for (j = 0; j < MAP_HEIGHT; j++)
+		{
+			map[i][j] = line[j] - '0';
 		}
 	}
-	fclose(fd);
+	close(fd);
 
 	return (map);
 }

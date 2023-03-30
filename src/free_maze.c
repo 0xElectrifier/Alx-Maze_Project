@@ -10,6 +10,18 @@
 void free_rc_data(RAYCAST_DATA *rc_data)
 {
 	int i;
+	GAME_WINDOW *game_w = rc_data->game_w;
+
+	/* Free SDL_Surface *
+	SDL_FreeSurface(game_w->screen_surface);
+	*/
+	/* Free SDL_Renderer */
+	SDL_DestroyRenderer(game_w->renderer);
+	/* Free SDL_Window */
+	SDL_DestroyWindow((game_w)->window);
+
+	/* Free GAME_WINDOW */
+	free(game_w);
 
 	/* Free PLAYER_DATA */
 	free((rc_data)->player_data);
