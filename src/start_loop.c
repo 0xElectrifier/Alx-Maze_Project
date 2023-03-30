@@ -66,6 +66,24 @@ void calc_line_height(RAY_DATA *r_data)
 
 
 /**
+ * redraw - redraws
+ * @game_w:
+ *
+ * Return: nothing
+ */
+void redraw(GAME_WINDOW *game_w)
+{
+	SDL_Renderer* renderer = SDL_CreateRenderer(game_w->window, -1, SDL_RENDERER_ACCELERATED);
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+	SDL_RenderClear(renderer);
+
+	SDL_RenderPresent(renderer);
+
+	SDL_DestroyRenderer(renderer);
+}
+
+
+/**
  * iterate_screen_width - iterates through the vertical components
  *			  of the screen
  * @rc_data: RAYCAST_DATA struct
@@ -84,10 +102,9 @@ int iterate_screen_width(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 
 	for (x = 0; x < SCREEN_WIDTH; x++)
 	{
-		/* Assign values to the PLAYER_DATA and TIMING_DATA struct */
-		init_PT_data(p_data, t_data);
 		/* Calculate ray position and direction */
 		init_Ray_data(p_data, r_data, x);
+
 		/* Perform DDA */
 		perform_dda((rc_data)->world_map, r_data);
 
@@ -111,6 +128,9 @@ int iterate_screen_width(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 	/* Present the renderer on the screen */
 	SDL_RenderPresent(game_w->renderer);
 
+	timing(t_data);
+	redraw(rc_data->game_w);
+
 	return (0);
 }
 
@@ -131,22 +151,32 @@ int start_game_loop(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 {
 	bool quit = false;
 	SDL_Event e;
+	int i = 0;
+
+	/* Assign values to the PLAYER_DATA and TIMING_DATA struct */
+	init_PT_data(p_data, t_data);
 
 	/* Start Game Loop, stop when a 'quit-event' is detected */
 	while (quit == false)
 	{
-		SDL_FillRect(rc_data->game_w->screen_surface, NULL, 0xFF);
+		i = 0;
+		iterate_screen_width(rc_data, p_data, r_data, t_data);
+
 		/* Event Loop */
 		while (SDL_PollEvent(&e))
 		{
 			if (e.type == SDL_QUIT)
 				quit = true;
-			
+
+			if (e.type == SDL_KEYDOWN)
+			{
+				readKeysAndMove(rc_data, e);
+			}
+			i++;
 		}
 
-		readKeysAndMove(rc_data);
-		iterate_screen_width(rc_data, p_data, r_data, t_data);
-		timing(t_data);
+		/**/
+		/* SDL_FillRect(rc_data->game_w->screen_surface, NULL, 0x000000FF); */
 	}
 
 	return (0);

@@ -37,6 +37,8 @@ SDL_Color choose_wall_color(RAYCAST_DATA *rc_data, RAY_DATA *r_data)
 	if (r_data->side == 1)
 		color = divideColorByScalar(color, 2);
 
+	free(colors);
+
 	return (color);
 }
 
