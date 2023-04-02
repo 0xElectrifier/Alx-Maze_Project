@@ -46,27 +46,27 @@ void readKeysAndMove(RAYCAST_DATA *rc_data, SDL_Event event)
 	PLAYER_DATA *p_data = rc_data->player_data;
 	RAY_DATA *r_data = rc_data->ray_data;
 	TIMING_DATA *t_data = rc_data->timing_data;
-	/*
+	const Uint8 *keys;
+
 	SDL_PumpEvents();
-	keys = SDL_GetKeyState(NULL);
-	*/
+	keys = SDL_GetKeyboardState(NULL);
 
 	/* Check key pressed and react accordingly */
 
 	/* Move backwards if no wall is behind */
-	if (event.key.keysym.sym == SDLK_DOWN)
+	if (keys[SDL_SCANCODE_DOWN] != 0)
 		move_backwards(rc_data);
 
 	/* Move forward if no wall is behind */
-	if (event.key.keysym.sym == SDLK_UP)
+	if (keys[SDL_SCANCODE_UP] != 0)
 		move_forward(rc_data);
 
 	/* Rotate to the right */
-	if (event.key.keysym.sym == SDLK_RIGHT)
+	if (keys[SDL_SCANCODE_RIGHT] != 0)
 		turn_right(rc_data);
 
 	/* Rotate to the left */
-	if (event.key.keysym.sym == SDLK_LEFT)
+	if (keys[SDL_SCANCODE_LEFT] != 0)
 		turn_left(rc_data);
 /*
 	if (event.key.keysym.sym == SDLK_DOWN)

@@ -170,12 +170,14 @@ int start_game_loop(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 				case SDL_QUIT:
 					quit = true;
 					break;
+					/*
 				case SDL_KEYDOWN:
 					readKeysAndMove(rc_data, e);
-					break;
+					break;*/
 			}
-			i++;
 		}
+
+		readKeysAndMove(rc_data, e);
 
 		/**/
 		/* SDL_FillRect(rc_data->game_w->screen_surface, NULL, 0x000000FF); */
