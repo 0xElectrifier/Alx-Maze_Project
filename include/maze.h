@@ -90,7 +90,7 @@ void turn_right(RAYCAST_DATA *rc_data);
 
 void turn_left(RAYCAST_DATA *rc_data);
 
-void readKeysAndMove(RAYCAST_DATA *rc_data, SDL_Event event);
+void readKeysAndMove(RAYCAST_DATA *rc_data);
 
 void timing(TIMING_DATA *t_data);
 

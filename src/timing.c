@@ -41,11 +41,8 @@ void timing(TIMING_DATA *t_data)
  *
  * Return: nothing
  */
-void readKeysAndMove(RAYCAST_DATA *rc_data, SDL_Event event)
+void readKeysAndMove(RAYCAST_DATA *rc_data)
 {
-	PLAYER_DATA *p_data = rc_data->player_data;
-	RAY_DATA *r_data = rc_data->ray_data;
-	TIMING_DATA *t_data = rc_data->timing_data;
 	const Uint8 *keys;
 
 	SDL_PumpEvents();
@@ -68,32 +65,4 @@ void readKeysAndMove(RAYCAST_DATA *rc_data, SDL_Event event)
 	/* Rotate to the left */
 	if (keys[SDL_SCANCODE_LEFT] != 0)
 		turn_left(rc_data);
-/*
-	if (event.key.keysym.sym == SDLK_DOWN)
-	{
-		move_backwards(rc_data);
-		iterate_screen_width(rc_data, p_data, r_data, t_data);
-	}
-
-	/* Move forward if no wall is behind *
-	if (event.key.keysym.sym == SDLK_UP)
-	{
-		move_forward(rc_data);
-		iterate_screen_width(rc_data, p_data, r_data, t_data);
-	}
-
-	/* Rotate to the right *
-	if (event.key.keysym.sym == SDLK_RIGHT)
-	{
-		turn_right(rc_data);
-		iterate_screen_width(rc_data, p_data, r_data, t_data);
-	}
-
-	/* Rotate to the left *
-	if (event.key.keysym.sym == SDLK_LEFT)
-	{
-		turn_left(rc_data);
-		iterate_screen_width(rc_data, p_data, r_data, t_data);
-	}
-*/
 }

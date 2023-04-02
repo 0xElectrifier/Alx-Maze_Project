@@ -151,7 +151,6 @@ int start_game_loop(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 {
 	bool quit = false;
 	SDL_Event e;
-	int i = 0;
 
 	/* Assign values to the PLAYER_DATA and TIMING_DATA struct */
 	init_PT_data(p_data, t_data);
@@ -159,7 +158,6 @@ int start_game_loop(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 	/* Start Game Loop, stop when a 'quit-event' is detected */
 	while (quit == false)
 	{
-		i = 0;
 		iterate_screen_width(rc_data, p_data, r_data, t_data);
 
 		/* Event Loop */
@@ -170,17 +168,11 @@ int start_game_loop(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 				case SDL_QUIT:
 					quit = true;
 					break;
-					/*
-				case SDL_KEYDOWN:
-					readKeysAndMove(rc_data, e);
-					break;*/
 			}
 		}
 
-		readKeysAndMove(rc_data, e);
+		readKeysAndMove(rc_data);
 
-		/**/
-		/* SDL_FillRect(rc_data->game_w->screen_surface, NULL, 0x000000FF); */
 	}
 
 	return (0);
