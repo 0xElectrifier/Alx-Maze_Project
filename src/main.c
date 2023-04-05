@@ -16,10 +16,17 @@ int main(int argc, char **argv)
 	(void) argc;
 	(void) argv;
 
+	/* Initializes SDL as well as create the game window and renderer */
 	game_window = init_sdl();
 	if (game_window == false)
 		return (-1);
 
+	/**
+	 * Declare variable 'rc_data' and dynamically allocate memory to it
+	 * and its embedded fields.
+	 * rc_data is a RAYCAST_DATA struct that contains most data
+	 * such as player data, ray data and so on.
+	 */
 	rc_data = create_game_struct(game_window);
 	if (rc_data == NULL)
 	{
