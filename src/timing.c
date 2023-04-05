@@ -35,9 +35,9 @@ void timing(TIMING_DATA *t_data)
 
 
 /**
- * readKeysAndMove - reads the key pressed and changes the player's view accordingly
- * @t_data: pointer to the TIMING_DATA struct
- * @event: SDL_Event structure containing current event to be logged
+ * readKeysAndMove - reads the key pressed and changes the
+ *		     player's view accordingly
+ * @rc_data: pointer to the RAYCAST_DATA struct
  *
  * Return: nothing
  */
@@ -51,18 +51,18 @@ void readKeysAndMove(RAYCAST_DATA *rc_data)
 	/* Check key pressed and react accordingly */
 
 	/* Move backwards if no wall is behind */
-	if (keys[SDL_SCANCODE_DOWN] != 0)
+	if (keys[SDL_SCANCODE_DOWN] != 0 || keys[SDL_SCANCODE_S] != 0)
 		move_backwards(rc_data);
 
 	/* Move forward if no wall is behind */
-	if (keys[SDL_SCANCODE_UP] != 0)
+	if (keys[SDL_SCANCODE_UP] != 0 || keys[SDL_SCANCODE_W] != 0)
 		move_forward(rc_data);
 
 	/* Rotate to the right */
-	if (keys[SDL_SCANCODE_RIGHT] != 0)
+	if (keys[SDL_SCANCODE_RIGHT] != 0 || keys[SDL_SCANCODE_D] != 0)
 		turn_right(rc_data);
 
 	/* Rotate to the left */
-	if (keys[SDL_SCANCODE_LEFT] != 0)
+	if (keys[SDL_SCANCODE_LEFT] != 0 || keys[SDL_SCANCODE_A] != 0)
 		turn_left(rc_data);
 }

@@ -73,7 +73,9 @@ void calc_line_height(RAY_DATA *r_data)
  */
 void redraw(GAME_WINDOW *game_w)
 {
-	SDL_Renderer* renderer = SDL_CreateRenderer(game_w->window, -1, SDL_RENDERER_ACCELERATED);
+	SDL_Renderer *renderer = SDL_CreateRenderer(game_w->window, -1,
+						    SDL_RENDERER_ACCELERATED);
+
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 	SDL_RenderClear(renderer);
 
@@ -98,7 +100,9 @@ int iterate_screen_width(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 {
 	int x;
 	GAME_WINDOW *game_w = rc_data->game_w;
-	SDL_Color color, RGB_BLACK = {0, 0, 0, 255};
+	SDL_Color color;
+	SDL_Color RGB_SkyBlue = {135, 206, 235, 255};
+	SDL_Color RGB_GrassGreen = {0, 255, 0, 255};
 
 	for (x = 0; x < SCREEN_WIDTH; x++)
 	{
@@ -119,11 +123,11 @@ int iterate_screen_width(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 		color = choose_wall_color(rc_data, r_data);
 
 		/* Draw the pixels as vertical lines with rgb color. Draw floor */
-		drawVertLine(game_w, x, 0, r_data->drawStart, RGB_BLACK);
+		drawVertLine(game_w, x, 0, r_data->drawStart, RGB_SkyBlue);
 		/* Draw walls */
 		drawVertLine(game_w, x, r_data->drawStart, r_data->drawEnd, color);
 		/* Draw floor */
-		drawVertLine(game_w, x, r_data->drawEnd, SCREEN_HEIGHT, RGB_BLACK);
+		drawVertLine(game_w, x, r_data->drawEnd, SCREEN_HEIGHT, RGB_GrassGreen);
 	}
 	/* Present the renderer on the screen */
 	SDL_RenderPresent(game_w->renderer);
@@ -174,47 +178,6 @@ int start_game_loop(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 		readKeysAndMove(rc_data);
 
 	}
-
-	return (0);
-}
-
-
-
-/**
- * game_loop - handles game loop
- * @game_window: pointer to the GAME_WINDOW struct
- *
- * Return: 0 on success, otherwise -1
- */
-int game_loop(GAME_WINDOW *game_window)
-{
-	RAYCAST_DATA *rc_data;
-
-	/* Dynamically allocate memory to key structures [raycast_struct.h] */
-	(rc_data) = malloc(sizeof(RAYCAST_DATA));
-	if ((rc_data) == NULL)
-		return (-1);
-	(rc_data)->player_data = malloc(sizeof(PLAYER_DATA));
-	if ((rc_data)->player_data == NULL)
-		return (-1);
-	(rc_data)->ray_data = malloc(sizeof(RAY_DATA));
-	if ((rc_data)->ray_data == NULL)
-		return (-1);
-	(rc_data)->timing_data = malloc(sizeof(TIMING_DATA));
-	if ((rc_data)->timing_data == NULL)
-		return (-1);
-	(rc_data)->world_map = load_map();
-	if ((rc_data)->world_map == NULL)
-		return (-1);
-	(rc_data)->game_w = game_window;
-	if ((rc_data)->game_w == NULL)
-		return (-1);
-
-	/* Start game loop */
-	start_game_loop(rc_data, (rc_data)->player_data,
-			(rc_data)->ray_data, (rc_data)->timing_data);
-
-	free_rc_data(rc_data);
 
 	return (0);
 }

@@ -1,5 +1,41 @@
 #include "maze.h"
 
+
+/**
+ * create_game_struct - dynamically allocate memory to user defined structures
+ * @game_window: pointer to the a GAME_WINDOW struct to be assign to
+ *		 a field in RAYCAST_DATA
+ *
+ * Return: pointer to a RAYCAST_DATA struct
+ */
+RAYCAST_DATA *create_game_struct(GAME_WINDOW *game_window)
+{
+	RAYCAST_DATA *rc_data;
+
+	/* Dynamically allocate memory to key structures [raycast_struct.h] */
+	(rc_data) = malloc(sizeof(RAYCAST_DATA));
+	if ((rc_data) == NULL)
+		return (NULL);
+	(rc_data)->player_data = malloc(sizeof(PLAYER_DATA));
+	if ((rc_data)->player_data == NULL)
+		return (NULL);
+	(rc_data)->ray_data = malloc(sizeof(RAY_DATA));
+	if ((rc_data)->ray_data == NULL)
+		return (NULL);
+	(rc_data)->timing_data = malloc(sizeof(TIMING_DATA));
+	if ((rc_data)->timing_data == NULL)
+		return (NULL);
+	(rc_data)->world_map = load_map();
+	if ((rc_data)->world_map == NULL)
+		return (NULL);
+	(rc_data)->game_w = game_window;
+	if ((rc_data)->game_w == NULL)
+		return (NULL);
+
+	return (rc_data);
+}
+
+
 /**
  * init_PT_data - initializes and assigns values in the player_data
  *		  and TIMING_DATA struct
@@ -10,9 +46,9 @@
  */
 int init_PT_data(PLAYER_DATA *p_data, TIMING_DATA *t_data)
 {
-	/* Player structure data */
-	(p_data)->posX = 22;
-	(p_data)->posY = 12;
+	/* Player structure data, 30, 24 */
+	(p_data)->posX = 30;
+	(p_data)->posY = 13;
 	(p_data)->dirX = -1;
 	(p_data)->dirY = 0;
 	(p_data)->planeX = 0;
@@ -99,8 +135,9 @@ int **load_map(void)
 		if (map[i] == NULL)
 			return (NULL);
 	}
-	
-	path = "./maps/map.txt";
+
+	/* path = "./maps/map1.txt"; */
+	path = "./maps/map2.txt";
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{

@@ -41,14 +41,14 @@ extern SDL_Surface *screen_surface;
 extern int world_map[MAP_WIDTH][MAP_HEIGHT];
 
 /* Prototype of init function */
-GAME_WINDOW *init(void);
+GAME_WINDOW *init_sdl(void);
 
 GAME_WINDOW *create_game_window(void);
 
+RAYCAST_DATA *create_game_struct(GAME_WINDOW *game_window);
+
 /* Renders the 2D map into a 3D map*/
 int render_map(void);
-
-int game_loop(GAME_WINDOW *game_window);
 
 int start_game_loop(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 		    RAY_DATA *r_data, TIMING_DATA *t_data);
