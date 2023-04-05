@@ -15,7 +15,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <errno.h>
-
 #include "raycast_struct.h"
 
 /* The Window the program will be rendering to */
@@ -34,8 +33,8 @@ extern SDL_Surface *screen_surface;
 #ifndef MAP_H
 #define MAP_H
 
-#define MAP_WIDTH 24
-#define MAP_HEIGHT 24
+#define MAP_WIDTH 32
+#define MAP_HEIGHT 32
 
 #endif /* MAP_H */
 
