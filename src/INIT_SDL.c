@@ -53,7 +53,7 @@ GAME_WINDOW *create_game_window(void)
  * Return: true (boolean) if the initialization was successful, otherwise false
  */
 
-GAME_WINDOW *init(void)
+GAME_WINDOW *init_sdl(void)
 {
 	GAME_WINDOW *game_window = NULL;
 

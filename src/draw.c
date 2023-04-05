@@ -28,6 +28,12 @@ SDL_Color choose_wall_color(RAYCAST_DATA *rc_data, RAY_DATA *r_data)
 		case 4:
 			color = colors[3];
 			break;
+		case 5:
+			color = colors[4];
+			break;
+		case 6:
+			color = colors[5];
+			break;
 		default:
 			color = colors[4];
 			break;
@@ -50,10 +56,11 @@ SDL_Color choose_wall_color(RAYCAST_DATA *rc_data, RAY_DATA *r_data)
 SDL_Color *create_colors(void)
 {
 	int color_count;
-	SDL_Color RGB_RED, RGB_GREEN, RGB_BLUE, RGB_WHITE, RGB_YELLOW;
+	SDL_Color RGB_RED, RGB_BLUE, RGB_WHITE;
+	SDL_Color RGB_BLACK, RGB_DarkBlue, RGB_LightBlue, RGB_PURPLE;
 	SDL_Color *colors;
 
-	color_count = 5;
+	color_count = 7;
 	colors = malloc(sizeof(SDL_Color) * color_count);
 	if (colors == NULL)
 		return (NULL);
@@ -63,12 +70,18 @@ SDL_Color *create_colors(void)
 	RGB_BLUE = createColorSDL(15, 82, 186, 255);
 	RGB_WHITE = createColorSDL(255, 255, 255, 255);
 	RGB_YELLOW = createColorSDL(255, 255, 0, 255);
+	RGB_BLACK = createColorSDL(0, 0, 0, 255);
+	RGB_DarkBlue = createColorSDL(0, 0, 128, 255);
+	RGB_LightBlue = createColorSDL(135, 206, 250, 255);
+	RGB_PURPLE = createColorSDL(128, 0, 128, 255);
+	(void) RGB_YELLOW;
 
 	colors[0] = RGB_RED;
-	colors[1] = RGB_GREEN;
-	colors[2] = RGB_BLUE;
+	colors[1] = RGB_DarkBlue;
+	colors[2] = RGB_PURPLE;
 	colors[3] = RGB_WHITE;
-	colors[4] = RGB_YELLOW;
+	colors[4] = RGB_BLUE;
+	colors[5] = RGB_BLACK;
 
 	return (colors);
 }

@@ -2,9 +2,9 @@
 # make -f Maze_Makefile			# compiles
 
 CC = gcc
-COMPILER_FLAGS = -g -Wall -Werror -Wextra -pedantic
+COMPILER_FLAGS = -Wall -Werror -Wextra -pedantic
 HEADER_FILE = -I ./include
-LINKER_FLAG = -lSDL2
+LINKER_FLAG = -lSDL2 -lm
 NAME = maze
 SOURCE = ./src/*.c
 

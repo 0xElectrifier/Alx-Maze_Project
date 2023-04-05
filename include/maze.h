@@ -15,7 +15,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <errno.h>
-
 #include "raycast_struct.h"
 
 /* The Window the program will be rendering to */
@@ -34,22 +33,22 @@ extern SDL_Surface *screen_surface;
 #ifndef MAP_H
 #define MAP_H
 
-#define MAP_WIDTH 24
-#define MAP_HEIGHT 24
+#define MAP_WIDTH 32
+#define MAP_HEIGHT 32
 
 #endif /* MAP_H */
 
 extern int world_map[MAP_WIDTH][MAP_HEIGHT];
 
 /* Prototype of init function */
-GAME_WINDOW *init(void);
+GAME_WINDOW *init_sdl(void);
 
 GAME_WINDOW *create_game_window(void);
 
+RAYCAST_DATA *create_game_struct(GAME_WINDOW *game_window);
+
 /* Renders the 2D map into a 3D map*/
 int render_map(void);
-
-int game_loop(GAME_WINDOW *game_window);
 
 int start_game_loop(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 		    RAY_DATA *r_data, TIMING_DATA *t_data);
@@ -90,7 +89,7 @@ void turn_right(RAYCAST_DATA *rc_data);
 
 void turn_left(RAYCAST_DATA *rc_data);
 
-void readKeysAndMove(RAYCAST_DATA *rc_data, SDL_Event event);
+void readKeysAndMove(RAYCAST_DATA *rc_data);
 
 void timing(TIMING_DATA *t_data);
 

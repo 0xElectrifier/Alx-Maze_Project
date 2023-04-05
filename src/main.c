@@ -11,18 +11,29 @@
 
 int main(int argc, char **argv)
 {
-	int g_loop_ret;
 	GAME_WINDOW *game_window;
+	RAYCAST_DATA *rc_data;
 	(void) argc;
 	(void) argv;
 
-	game_window = init();
+	game_window = init_sdl();
 	if (game_window == false)
 		return (-1);
 
-	g_loop_ret = game_loop(game_window);
-	if (g_loop_ret == -1)
+	rc_data = create_game_struct(game_window);
+	if (rc_data == NULL)
+	{
+		printf("Couldn't create game struct\n");
 		return (-1);
+	}
+
+
+	/* Start game loop */
+	start_game_loop(rc_data, (rc_data)->player_data,
+			(rc_data)->ray_data, (rc_data)->timing_data);
+
+	/* Free all dynamically allocated memory */
+	free_rc_data(rc_data);
 
 	return (0); /* Return on success */
 }
