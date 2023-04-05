@@ -3,7 +3,7 @@
 
 /**
  * timing - handles the timing for the speed modifiers to determine the speed
- *	    of movement and rotation by the input keys
+ *	    of movement and rotation based on input keys
  * @t_data: pointer to a TIME_DATA structure
  *
  * Return: nothing
@@ -17,16 +17,6 @@ void timing(TIMING_DATA *t_data)
 	t_data->oldTime = t_data->time;
 	t_data->time = SDL_GetTicks();
 	frameTime = (t_data->time - t_data->oldTime) / 1000.0;
-	/**
-	 * I noticed the frameTime increases on every iteration,
-	 * which means the CPU kept slowing down.
-	 *
-	if (frameTime > maxFrameTime)
-		frameTime = maxFrameTime;
-	*
-	printf("oldTime = %f\ntime = %f\n", t_data->oldTime, t_data->time);
-	printf("frameTime = %f\n", frameTime);
-	*/
 	t_data->moveSpeed = frameTime * 5.0;
 	t_data->rotSpeed = frameTime * 3.0;
 

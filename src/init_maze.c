@@ -37,8 +37,7 @@ RAYCAST_DATA *create_game_struct(GAME_WINDOW *game_window)
 
 
 /**
- * init_PT_data - initializes and assigns values in the player_data
- *		  and TIMING_DATA struct
+ * init_PT_data - initializes the player_data and TIMING_DATA struct
  * @p_data: pointer to a PLAYER_DATA struct
  * @t_data: pointer to a TIMING_DATA struct
  *
@@ -120,7 +119,7 @@ int init_Ray_data(PLAYER_DATA *p_data, RAY_DATA *r_data, int x)
  * load_map - creates the game map
  *
  * Description: loads the game map from a file and
- *		constructs it into a 2D array
+ *		converts it into a 2D array
  * Return: pointer to a 2D array of the game map on success, otherwise NULL
  */
 int **load_map(void)
@@ -145,6 +144,7 @@ int **load_map(void)
 		return (NULL);
 	}
 
+	/* Assigns data from opened file 'fd' to 2D array, 'map */
 	for (i = 0; i < MAP_WIDTH; i++)
 	{
 		readcount = read(fd, line, MAP_HEIGHT + 1);
