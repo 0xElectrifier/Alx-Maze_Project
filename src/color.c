@@ -17,25 +17,25 @@ SDL_Color choose_wall_color(RAYCAST_DATA *rc_data, RAY_DATA *r_data)
 	switch (rc_data->world_map[r_data->mapX][r_data->mapY])
 	{
 		case 1:
-			color = colors[0];
+			color = colors[0]; /* Red */
 			break;
 		case 2:
-			color = colors[1];
+			color = colors[1]; /* DarkBlue */
 			break;
 		case 3:
-			color = colors[2];
+			color = colors[2]; /* Purple */
 			break;
 		case 4:
-			color = colors[3];
+			color = colors[3]; /* White */
 			break;
 		case 5:
-			color = colors[4];
+			color = colors[4]; /* Blue */
 			break;
 		case 6:
-			color = colors[5];
+			color = colors[5]; /* Black */
 			break;
 		default:
-			color = colors[4];
+			color = colors[4]; /* Blue */
 			break;
 	}
 
@@ -57,7 +57,7 @@ SDL_Color *create_colors(void)
 {
 	int color_count;
 	SDL_Color RGB_RED, RGB_BLUE, RGB_WHITE;
-	SDL_Color RGB_BLACK, RGB_DarkBlue, RGB_LightBlue, RGB_PURPLE;
+	SDL_Color RGB_BLACK, RGB_DarkBlue, RGB_PURPLE;
 	SDL_Color *colors;
 
 	color_count = 7;
@@ -65,16 +65,13 @@ SDL_Color *create_colors(void)
 	if (colors == NULL)
 		return (NULL);
 
+	/* Create an SDL_Color struct to color the walls */
 	RGB_RED = createColorSDL(255, 0, 0, 255);
-	RGB_GREEN = createColorSDL(0, 255, 0, 255);
 	RGB_BLUE = createColorSDL(15, 82, 186, 255);
 	RGB_WHITE = createColorSDL(255, 255, 255, 255);
-	RGB_YELLOW = createColorSDL(255, 255, 0, 255);
 	RGB_BLACK = createColorSDL(0, 0, 0, 255);
 	RGB_DarkBlue = createColorSDL(0, 0, 128, 255);
-	RGB_LightBlue = createColorSDL(135, 206, 250, 255);
 	RGB_PURPLE = createColorSDL(128, 0, 128, 255);
-	(void) RGB_YELLOW;
 
 	colors[0] = RGB_RED;
 	colors[1] = RGB_DarkBlue;
@@ -138,49 +135,4 @@ SDL_Color divideColorByScalar(SDL_Color color, int scalar)
 	color.b = color.b / scalar;
 
 	return (color);
-}
-
-
-/**
- * drawVertLine - modifies the pixels of the SDL_Surface pointed to
- *		  by the 'surface' argument.
- * @x: the x-coordinate of the line
- * @startY: the y-coordinate of the start of the line
- * @endY: the y-coordinate of the end of the line
- * @color: the color of the line, represented as an SDL_Color struct
- * @game_window: pointer to a GAME_WINDOW object contain key
- *		 game structures like the window, renderer and screen surface
- * Return: true on success, otherwise false
- */
-bool drawVertLine(GAME_WINDOW *game_window, int x, int startY, int endY,
-		  SDL_Color color)
-{
-	int y, temp;
-	SDL_Surface *surface = NULL;
-	SDL_Renderer *renderer = NULL;
-
-	surface = game_window->screen_surface;
-	renderer = game_window->renderer;
-	/* Swap startY and endY if endY is less than startY */
-	if (endY < startY)
-	{
-		temp = startY;
-		startY = endY;
-		endY = temp;
-	}
-
-	/* Check if any point of the line is off-screen */
-	if (endY < 0 || startY >= surface->h || x < 0 || x >= surface->w)
-	{
-		return (false);
-	}
-
-	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, SDL_ALPHA_OPAQUE);
-
-	for (y = startY; y <= endY; y++)
-	{
-		SDL_RenderDrawPoint(renderer, x, y);
-	}	return (true);
-
-	return (true);
 }

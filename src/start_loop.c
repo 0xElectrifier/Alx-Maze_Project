@@ -48,7 +48,6 @@ void calc_line_height(RAY_DATA *r_data)
 
 	/* Calculate height of line to draw on screen */
 	lineHeight = (int)(SCREEN_HEIGHT / (r_data)->perpWallDist);
-	/*printf("lineHeight - %d\n", lineHeight);*/
 
 	/* Calculate lowest and highest pixel to fill in current stripe */
 	drawStart = -lineHeight / 2 + (SCREEN_HEIGHT / 2);
@@ -66,8 +65,10 @@ void calc_line_height(RAY_DATA *r_data)
 
 
 /**
- * redraw - redraws
- * @game_w:
+ * redraw - function that clears the screen to black in preparation
+ *	    for the next iteration of the game loop.
+ * @game_w: pointer to the GAME_WINDOW struct containing SDL data related to
+ *	    windows and renderer.
  *
  * Return: nothing
  */
@@ -167,11 +168,14 @@ int start_game_loop(RAYCAST_DATA *rc_data, PLAYER_DATA *p_data,
 		/* Event Loop */
 		while (SDL_PollEvent(&e))
 		{
-			switch (e.type)
+			/**
+			 * Handles the SDL_QUIT event by setting the 'quit' flag to true
+			 * and breaking the loop
+			 */
+			if (e.type == SDL_QUIT)
 			{
-				case SDL_QUIT:
-					quit = true;
-					break;
+				quit = true;
+				break;
 			}
 		}
 
