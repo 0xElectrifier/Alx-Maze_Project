@@ -15,23 +15,23 @@ This game was built to be compiled and ran on a linux machine only.
 - Clone the repository
 
 	```bash
-	electrifier@electrifier-pc:~/$ git clone https://https://github.com/0xElectrifier/alx-maze_project
+	user@user-pc:~/$ git clone https://https://github.com/0xElectrifier/alx-maze_project
 	Cloning into 'alx-maze_project'...
 	...
 	```
 
 - Install SDL2 library on your respective machine
 
-```bash
-electrifier@electrifier-pc:~/$ ./install_sdl2
-```
+	```bash
+	user@user-pc:~/$ ./install_sdl2
+	```
 
 - Compile the game files
 
-```bash
-electrifier@electrifier-pc:~/$ cd alx-maze_project/
-electrifier@electrifier-pc:~/$ ./build.sh
-```
+	```bash
+	user@user-pc:~/$ cd alx-maze_project/
+	user@user-pc:~/$ ./build.sh
+	```
 
 ### How to Page
 
