@@ -1,11 +1,21 @@
 # ELECTRIFIER MAZE
 
 ![gif cut from game](/pics/readme_gif.gif)
-## Introduction
+
+## Table of Content
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisite)
+- [Installation](#installation)
+- [Game control](#game_control)
+- [Concept](#concept)
+- [About](#about)
+
+
+## Introduction {#introduction}
 Electrifier Maze is a simple game built using the Raycasting technique. With a simple objective: attempt to get through the Maze to the other side of the map
 
 
-## Prerequisites
+## Prerequisites {#prerequisite}
 - Debian/Ubuntu or Fedora OS
 - A Bash terminal
 - A user with superuser privilege
@@ -13,7 +23,8 @@ Electrifier Maze is a simple game built using the Raycasting technique. With a s
 
 This game was built to be compiled and ran on a linux machine only.
 
-## Installation
+
+## Installation {#installation}
 Using a Bash terminal, run the commands after the `$` sign below.
 - Clone the repository
 
@@ -41,7 +52,7 @@ Using a Bash terminal, run the commands after the `$` sign below.
 	```
 
 
-## Game controls
+## Game controls {#game_control}
 | Keys			| Function	|
 |  :-------		| :---------	|
 | `w` or `up arrow`	| Move forward  |
@@ -50,12 +61,12 @@ Using a Bash terminal, run the commands after the `$` sign below.
 | `d` or `right arrow`	| Turn right	|
 
 
-## Concept
+## Concept {#concept}
 As part of the project requirement, the game was built using the SDL2 library and Raycasting Technique.
 - [Raycasting](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/): Raycasting is a rendering technique that creates 3D perspective from a 2D map. The 2D map used in this game is stored in a [file](/map/map1.txt), which is then extracted by a function that reads the file line by line and stores each character in a 2D array representing the length and breadth of the map.
 
 - [SDL2](https://lazyfoo.net/tutorials/SDL/index.php): SDL (The Simple DirectMedia Layer) is a cross-platform development library, designed to allow low level access to audio, video, mouse, keyboard and graphics hardware via OpenGL and Direct3D.
 
 
-## About the Dev
+## About the Dev {#about}
 
