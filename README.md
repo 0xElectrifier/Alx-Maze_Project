@@ -50,7 +50,7 @@ Using a Bash terminal, run the commands after the `$` sign below.
 | d / right arrow	| Turn right	|
 
 
-### Concept
+## Concept
 - [Raycasting](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/)
 - [SDL2](https://lazyfoo.net/tutorials/SDL/index.php)
 
@@ -59,5 +59,5 @@ SDL (The Simple DirectMedia Layer) is a cross-platform development library, desg
 Raycasting is a rendering technique that creates 3D perspective from a 2D map. The 2D map used in this game is stored in a [file](/map/map1.txt), which is then extracted by a function that reads the file line by line and stores each character in a 2D array representing the length and breadth of the map.
 
 
-### About the Dev
+## About the Dev
 
