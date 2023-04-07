@@ -3,12 +3,12 @@
 ![gif cut from game](/pics/readme_gif.gif)
 
 ## Table of Content
-- [Introduction](#introduction-introduction)
-- [Prerequisites](#prerequisites-prerequisite)
-- [Installation](#concept-concept)
-- [Game control](game-controls-game_control)
-- [Concept](#concept-concept)
-- [About](#about-the-dev-about)
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+- [Installation](#concept)
+- [Game control](game-controls)
+- [Concept](#concept)
+- [About](#about-the-dev)
 
 
 ## Introduction
