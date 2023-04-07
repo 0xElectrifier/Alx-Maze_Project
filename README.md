@@ -43,11 +43,11 @@ Using a Bash terminal, run the commands after the `$` sign below.
 
 ### Game controls
 | Keys			| Function	|
-|   :-------		|   :---------	|
-| w / up arrow		| Move forward  |
-| s / down arrow	| Move backward |
-| a / left arrown	| Turn left	|
-| d / right arrow	| Turn right	|
+|  :-------		| :---------	|
+| `w` or `up arrow`	| Move forward  |
+| `s` or `down arrow`	| Move backward |
+| `a` or `left arrown`	| Turn left	|
+| `d` or `right arrow`	| Turn right	|
 
 
 ## Concept
