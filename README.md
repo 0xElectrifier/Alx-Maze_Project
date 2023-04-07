@@ -4,6 +4,7 @@
 ## Introduction
 Electrifier Maze is a simple game built using the Raycasting technique. With a simple objective: attempt to get through the Maze to the other side of the map
 
+
 ## Prerequisites
 - Debian/Ubuntu or Fedora OS
 - A Bash terminal
@@ -39,9 +40,10 @@ Using a Bash terminal, run the commands after the `$` sign below.
 	user@user-pc:~/alx-maze_project/$ ./build.sh
 	```
 
+
 ### Game controls
 | Keys			| Function	|
-|   :-------:		|   :---------: |
+|   :-------		|   :---------	|
 | w / up arrow		| Move forward  |
 | s / down arrow	| Move backward |
 | a / left arrown	| Turn left	|
@@ -49,7 +51,13 @@ Using a Bash terminal, run the commands after the `$` sign below.
 
 
 ### Concept
-The game was built using the SDL2 library. SDL (The Simple DirectMedia Layer) is a cross-platform development library, desgined to allow access to low level access to access to audio, video, mouse, keyboard and graphics hardware.
+- [Raycasting](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/)
+- [SDL2](https://lazyfoo.net/tutorials/SDL/index.php)
+
+As part of the project requirement, the game was built using the SDL2 library and Raycasting Technique.
+SDL (The Simple DirectMedia Layer) is a cross-platform development library, desgined to allow low level access to audio, video, mouse, keyboard and graphics hardware via OpenGL and Direct3D.
+Raycasting is a rendering technique that creates 3D perspective from a 2D map. The 2D map used in this game is stored in a [file](/map/map1.txt), which is then extracted by a function that reads the file line by line and stores each character in a 2D array representing the length and breadth of the map.
+
 
 ### About the Dev
 
