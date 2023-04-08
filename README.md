@@ -52,6 +52,7 @@ Using a Bash terminal, run the commands after the `$` sign below.
 
 
 ## Game controls
+Used this keys to navigate your way around the game.
 | Keys			| Function	|
 |  :-------		| :---------	|
 | `w` or `up arrow`	| Move forward  |
