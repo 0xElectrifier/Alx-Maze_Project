@@ -60,7 +60,7 @@ Using a Bash terminal, run the commands after the `$` sign below.
 | `d` or `right arrow`	| Turn right	|
 
 
-## Concept
+## Tools Used
 As part of the project requirement, the game was built using the SDL2 library and Raycasting Technique.
 - ChatGPT: ChatGPT is a language model developed by OpenAI. It generates human-like text responses to text inputs.
 	ChatGPT was used for researching to better understand the Raycasting technique and SDL2 library.
@@ -70,5 +70,5 @@ As part of the project requirement, the game was built using the SDL2 library an
 
 - SDL2: SDL (The Simple DirectMedia Layer) is a cross-platform development library, designed to allow low level access to audio, video, mouse, keyboard and graphics hardware via OpenGL and Direct3D. SDL2 is the second version of the SDL library. For more information about SDL2, click [here](https://lazyfoo.net/tutorials/SDL/index.php).
 
-## Contributor
+## Contributors
 - [Chijioke Akacha](https://www.linkedin.com/in/chijioke-akacha/)
