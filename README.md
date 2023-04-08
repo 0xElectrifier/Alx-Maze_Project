@@ -7,13 +7,12 @@
 - [Prerequisites](#prerequisites)
 - [Installation](#concept)
 - [Game control](game-controls)
-- [Concept](#concept)
-- [About](#about-the-dev)
+- [Tools Used](#tools-used)
+- [Contributor](#contributor)
 
 
 ## Introduction
-Electrifier Maze is a simple game built using the Raycasting technique. With a simple objective: attempt to get through the Maze to the other side of the map
-
+Electrifier Maze is a simple game built using the Raycasting technique. It was built to serve as my portfolio project. I chose this project to because of my curiosity to explore game development. The goal of the game is to find your way from one end of the map (where the player was initially spawned with black walls) to the other end of the map (with white walls).
 
 ## Prerequisites
 - Debian/Ubuntu or Fedora OS
@@ -63,10 +62,13 @@ Using a Bash terminal, run the commands after the `$` sign below.
 
 ## Concept
 As part of the project requirement, the game was built using the SDL2 library and Raycasting Technique.
-- [Raycasting](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/): Raycasting is a rendering technique that creates 3D perspective from a 2D map. The 2D map used in this game is stored in a [file](/map/map1.txt), which is then extracted by a function that reads the file line by line and stores each character in a 2D array representing the length and breadth of the map.
+- ChatGPT: ChatGPT is a language model developed by OpenAI. It generates human-like text responses to text inputs.
+	ChatGPT was used for researching to better understand the Raycasting technique and SDL2 library.
+	It also suggested better ways to implement some designs, like the game map and so on.
 
-- [SDL2](https://lazyfoo.net/tutorials/SDL/index.php): SDL (The Simple DirectMedia Layer) is a cross-platform development library, designed to allow low level access to audio, video, mouse, keyboard and graphics hardware via OpenGL and Direct3D.
+- Raycasting: Raycasting is a rendering technique that creates 3D perspective from a 2D map. The 2D map used in this game is stored in a [file](/map/map1.txt), which is then extracted by a function that reads the file line by line and stores each character in a 2D array representing the length and breadth of the map. For more information about Raycasting, click [here](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/).
 
+- SDL2: SDL (The Simple DirectMedia Layer) is a cross-platform development library, designed to allow low level access to audio, video, mouse, keyboard and graphics hardware via OpenGL and Direct3D. SDL2 is the second version of the SDL library. For more information about SDL2, click [here](https://lazyfoo.net/tutorials/SDL/index.php).
 
-## About the Dev
-
+## Contributor
+- [Chijioke Akacha](https://www.linkedin.com/in/chijioke-akacha/)
